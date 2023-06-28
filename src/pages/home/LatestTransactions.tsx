@@ -1,37 +1,23 @@
-const mocksTransactionData = [
-  {
-    txid: "flsjdklf...jkasdfj",
-    amount: ".00045",
-    usd: "$123.54",
-    fee: "20.1sat/vB",
-  },
-  {
-    txid: "flsjdklf...jkasdfj",
-    amount: ".00045",
-    usd: "$123.54",
-    fee: "20.1sat/vB",
-  },
-  {
-    txid: "flsjdklf...jkasdfj",
-    amount: ".00045",
-    usd: "$123.54",
-    fee: "20.1sat/vB",
-  },
-  {
-    txid: "flsjdklf...jkasdfj",
-    amount: ".00045",
-    usd: "$123.54",
-    fee: "20.1sat/vB",
-  },
-  {
-    txid: "flsjdklf...jkasdfj",
-    amount: ".00045",
-    usd: "$123.54",
-    fee: "20.1sat/vB",
-  },
-];
+import React, { useState, useEffect } from "react";
+import {
+  LatestTransactionInfoProps,
+  getLatestTransactionData,
+} from "../../api/transaction";
+
 export const LatestTransactionTable = () => {
-  const rows = mocksTransactionData.map((txInfo) => {
+  const [transactionData, setTransactionData] = useState<
+    LatestTransactionInfoProps[]
+  >([]);
+  const getTransactionData = async () => {
+    const fetchedData = await getLatestTransactionData();
+    setTransactionData(fetchedData);
+  };
+
+  useEffect(() => {
+    getTransactionData();
+  }, []);
+
+  const rows = transactionData?.map((txInfo) => {
     return (
       <LatestTransactionInfo
         amount={txInfo.amount}
@@ -54,12 +40,7 @@ export const LatestTransactionTable = () => {
     </div>
   );
 };
-interface LatestTransactionInfoProps {
-  txid: string;
-  amount: string;
-  usd: string;
-  fee: string;
-}
+
 const LatestTransactionInfo = ({
   txid,
   amount,
