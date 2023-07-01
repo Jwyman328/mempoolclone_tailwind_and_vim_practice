@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { PastFutureBlockDivider } from "./PastFutureBlockDivider";
-import { Header } from "./Header";
+import { Header } from "../../components/Header";
 import { BlockProps, BlockSlider } from "./BlockSlider";
 import { getPotentialBlocks, getBlockData } from "../../api/block";
 import { TransactionFees } from "./TransactionFees";
 import { DifficultyAdjustmentBar } from "./ DifficultyAdjustmentBar";
 import { LatestBlocks } from "./LatestBlocks";
 import { LatestTransactionTable } from "./LatestTransactions";
-import { MoreInfoFooter } from "./MoreInfoFooter";
+import { MoreInfoFooter } from "../../components/MoreInfoFooter";
 
 export const Home = () => {
   const [blocks, setBlocks] = useState<BlockProps[] | []>([]);
